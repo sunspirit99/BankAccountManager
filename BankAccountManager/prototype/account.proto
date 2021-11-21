@@ -1,0 +1,91 @@
+syntax = "proto3";
+package account;
+
+import "google/protobuf/timestamp.proto";
+
+
+//Define models
+message Account{
+    uint64 Id = 1 ; 
+    string Name = 2;
+    string Address = 3;
+    string PhoneNumber = 4 ;
+    float Balance = 5 ;
+    enum STATE {
+        ACTIVE = 0 ;
+        LOCKED = 1 ;
+        DISABLE = 2 ;
+    }
+    STATE Status = 6 ;
+    google.protobuf.Timestamp Createtime = 7;
+}
+
+message Transaction{
+    uint64 From = 1;
+    uint64 To = 2;
+    float Amount = 3;
+}
+
+message AccountRequest {
+    Account account = 1;
+}
+  
+message AccountResponse {
+    // ResponseCode code = 1;
+    string message = 2;
+    Account account = 3;
+}
+  
+message AccountListRequest {
+    // int32 page = 1;
+    // int32 limit = 2; 
+}
+message AccountListResponse {
+    // ResponseCode code = 1;
+    string message = 2;
+    repeated Account accounts = 3;
+}
+
+message DepositRequest {
+    Transaction transaction = 1;
+}
+
+message DepositResponse {
+    string message = 1;
+    Transaction transaction = 2;
+    Account account = 3;
+}
+
+message WithdrawRequest {
+    Transaction transaction = 1;
+}
+
+message WithdrawResponse {
+    string message = 1;
+    Transaction transaction = 2;
+    Account account = 3;
+}
+
+message TransferRequest {
+    Transaction transaction = 1;
+}
+
+message TransferResponse {
+    string message = 1;
+    Transaction transaction = 2;
+    Account Sender = 3;
+    Account Receiver = 4 ;
+}
+  
+  
+// Define Service
+service AccountService {
+    rpc Acc_Create (AccountRequest) returns (AccountResponse){}
+    rpc Acc_Info (AccountRequest) returns (AccountResponse){}
+    rpc Acc_Update (AccountRequest) returns (AccountResponse){}
+    rpc Acc_Delete (AccountRequest) returns (AccountResponse){}
+    rpc Acc_List (AccountListRequest) returns (AccountListResponse){}
+    rpc Acc_Withdraw (WithdrawRequest) returns (WithdrawResponse){}
+    rpc Acc_Deposit (DepositRequest) returns (DepositResponse){}
+    rpc Acc_Transfer (TransferRequest) returns (TransferResponse){}
+}
