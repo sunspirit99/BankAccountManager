@@ -6,6 +6,6 @@ Steps to run :
 3.  then run "go run client/client.go"
 
 
-Unit-test :
-1.  run "cd server"
+Benchmark :
+1.  run "go run server/server.go"
 2.  run "go test"
