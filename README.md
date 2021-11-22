@@ -1,4 +1,4 @@
-# BankAccountManager
+# BankAccountManager (gRPC)
 
 Steps to run :
 1.  Personalize your mysql profile in "server.go"
@@ -16,3 +16,5 @@ Results in local :
 3.  Perform 1000 transactions transfer One-One (using Simple gRPC) :  93.677s
 4.  Transfer 1000 transactions One-Many (using Simple gRPC) : 103.330s
 5.  Transfer 1000 transactions Many-One (using Simple gRPC) : 105.942s
+
+# SuperBank (Rest API)
